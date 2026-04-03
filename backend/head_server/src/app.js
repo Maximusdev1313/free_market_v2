@@ -4,6 +4,7 @@ import express from 'express'
 import routes from './routes.js'
 import errorMiddleware from './middleware/error.middleware.js'
 import userRoutes from './modules/users/user.routes.js'
+import cors from 'cors'
 /**
  * We create the express application here.
  * This file is responsible ONLY for configuring the app.
@@ -30,7 +31,8 @@ app.disable('x-powered-by')
  *   /api/users
  *   /api/orders
  */
-
+app.use(cors({ origin: ['http://localhost:5173'] }))
+app.use("/uploads", express.static("uploads"))
 app.use('/users', userRoutes)
 app.use('/api', routes)
 

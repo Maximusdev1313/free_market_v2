@@ -1,4 +1,6 @@
-import { verifyToken } from "../utils/jwt.js"
+import jwt from "jsonwebtoken"
+
+const SECRET = "supersecret"
 
 export default function auth(req, res, next) {
 
@@ -12,14 +14,13 @@ export default function auth(req, res, next) {
 
     try {
 
-        const decoded = verifyToken(token)
+        const decoded = jwt.verify(token, SECRET)
 
         req.user = decoded
 
         next()
 
-    } catch (err) {
-
+    } catch {
         return res.status(401).json({ message: "Invalid token" })
     }
 

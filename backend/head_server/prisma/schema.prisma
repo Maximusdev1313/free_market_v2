@@ -59,22 +59,27 @@ model Category {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String?
-  price       Float
-  stock       Int
-  createdAt   DateTime @default(now())
+  id        Int    @id @default(autoincrement())
+  name      String
+  price     Float
+  stock     Int
+  companyId Int
 
-  companyId  Int
+  images     ProductImage[]
+  company    Company        @relation(fields: [companyId], references: [id])
+  category   Category?      @relation(fields: [categoryId], references: [id])
   categoryId Int?
-
-  company  Company   @relation(fields: [companyId], references: [id])
-  category Category? @relation(fields: [categoryId], references: [id])
-
-  reviews    Review[]
-  orderItems OrderItem[]
   cartItems  CartItem[]
+  orderItems OrderItem[]
+  reviews    Review[]
+}
+
+model ProductImage {
+  id        Int    @id @default(autoincrement())
+  url       String
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model Cart {

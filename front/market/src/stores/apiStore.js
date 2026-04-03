@@ -6,7 +6,7 @@ import { nextTick, onMounted } from 'vue'
 
 export const apiStore = defineStore('apiStore', {
     state: () => ({
-        api: 'https://fakestoreapi.com/products',
+        api: 'http://localhost:3000/api/products',
         products: null,
         cart: [],
         totalCost: 0,
