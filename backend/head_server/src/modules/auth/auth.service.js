@@ -7,7 +7,11 @@ const SECRET = "supersecret"
 export async function register(data) {
 
     const hash = await bcrypt.hash(data.password, 10)
+    const email = await prisma.user.findUnique({
+        where: { email: data.email }
+    })
 
+    if (email) throw new Error("Email is repeated")
     const user = await prisma.user.create({
         data: {
             email: data.email,
@@ -16,7 +20,7 @@ export async function register(data) {
             role: data.role
         }
     })
-
+    
     return user
 }
 
