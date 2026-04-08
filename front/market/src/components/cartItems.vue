@@ -1,12 +1,14 @@
 <script setup>
 import { apiStore } from '@/stores/apiStore'
 const store = apiStore()
+
+const baseImageURL = 'http://localhost:3000'
 </script>
 <template>
   <div class="cart">
     <div class="cart-items">
       <div class="cart-item" v-for="item in store.cart" :key="item.id">
-        <img :src="item.image" class="item-image" />
+        <img :src="baseImageURL + item.images[0].url" class="item-image" />
 
         <div class="item-info">
           <h3>{{ item.title }}</h3>
@@ -16,9 +18,9 @@ const store = apiStore()
 
           <div class="actions">
             <div class="qty-control">
-              <button @click="store.decrease(item.id)">−</button>
+              <button @click="store.decrementQuantity(item.id)">−</button>
               <span>{{ item.quantity }}</span>
-              <button @click="store.increase(item.id)">+</button>
+              <button @click="store.incremnetQuantity(item.id)">+</button>
             </div>
 
             <button class="delete" @click="store.remove(item.id)">

@@ -1,4 +1,5 @@
 import prisma from "../../database/prisma.js"
+import fs from "fs"
 
 export async function createProduct(data) {
 
@@ -19,7 +20,6 @@ export async function createProduct(data) {
     })
 
 }
-import fs from "fs"
 
 export async function deleteImage(id) {
 
@@ -76,7 +76,8 @@ export async function listProducts(query) {
         take: limit,
         include: {
             company: true,
-            category: true
+            category: true,
+            images: true
         }
     })
 

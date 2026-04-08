@@ -10,7 +10,8 @@ export const apiStore = defineStore('apiStore', {
         products: null,
         cart: [],
         totalCost: 0,
-    }), actions: {
+    }),
+    actions: {
         async fetchProducts() {
             try {
                 const response = await axios.get(`${this.api}`);
@@ -33,8 +34,6 @@ export const apiStore = defineStore('apiStore', {
             if (this.checkItemInCart(product.id)) {
                 console.log('Product already in cart');
                 this.incremnetQuantity(product.id);
-                this.totalCost += product.price; // Update total cost when quantity increases
-
                 return;
             } else {
                 product.quantity = 1;
@@ -53,6 +52,8 @@ export const apiStore = defineStore('apiStore', {
             if (item) {
                 item.quantity += 1;
                 console.log(this.totalCost);
+                this.totalCost += item.price; // Update total cost when quantity increases
+
             }
         },
         decrementQuantity(productId) {

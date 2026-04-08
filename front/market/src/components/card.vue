@@ -2,6 +2,7 @@
 import { apiStore } from '@/stores/apiStore'
 const store = apiStore()
 
+const baseImageURL = 'http://localhost:3000'
 const props = defineProps({
   product: {
     type: Object,
@@ -15,11 +16,14 @@ const props = defineProps({
     <div class="card">
       <div class="product-image">
         <div class="discount-persent">15%</div>
-        <img :src="product.image" :alt="product.name" />
+        <img :src="baseImageURL + product.images[0].url" alt="product" />
       </div>
+
       <div class="product-info">
-        <p><a href="/">Company Name</a></p>
-        <h3 class="product-name">{{ product.title }}</h3>
+        <p>
+          <a href="/">{{ product.company.name }}</a>
+        </p>
+        <h3 class="product-name">{{ product.name }}</h3>
         <p class="product-description">
           {{ product.description }}
         </p>
