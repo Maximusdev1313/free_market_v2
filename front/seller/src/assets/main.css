@@ -4,6 +4,31 @@
   font-weight: normal;
 }
 
+/* From Uiverse.io by TimTrayler */
+button {
+
+  --accent: #42117b;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 1.1em;
+  background-color: #212121;
+  cursor: pointer;
+  color: white;
+  padding: 1em 2em;
+
+}
+
+button:hover {
+  background-color: #2d0b53;
+}
+
+button:active {
+  background-color: var(--accent);
+  transform: scale(0.95);
+}
+
+
 a,
 .green {
   text-decoration: none;
@@ -11,6 +36,7 @@ a,
   transition: 0.4s;
   padding: 3px;
 }
+
 
 @media (hover: hover) {
   a:hover {

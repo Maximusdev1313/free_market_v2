@@ -24,12 +24,14 @@ model User {
 }
 
 model Company {
-  id        Int      @id @default(autoincrement())
-  name      String
-  ownerId   Int
-  createdAt DateTime @default(now())
-
-  owner User @relation("CompanyOwner", fields: [ownerId], references: [id])
+  id         Int      @id @default(autoincrement())
+  name       String
+  ownerId    Int
+  createdAt  DateTime @default(now())
+  location   String   @default("")
+  address    String   @default("")
+  isApproved Boolean  @default(false)
+  owner      User     @relation("CompanyOwner", fields: [ownerId], references: [id])
 
   members  CompanyMember[]
   products Product[]

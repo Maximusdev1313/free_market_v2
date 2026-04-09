@@ -58,6 +58,7 @@ export const mainStore = defineStore('mainStore', {
             if (this.token) {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
             }
-        }
+        },
+        
     }
 })
