@@ -16,7 +16,7 @@ button {
   cursor: pointer;
   color: white;
   padding: 1em 2em;
-
+  text-transform: capitalize;
 }
 
 button:hover {

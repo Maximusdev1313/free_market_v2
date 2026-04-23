@@ -1,13 +1,12 @@
 <script setup>
-import loginComponent from "@/components/auth/loginComponent.vue";
-import register from "@/components/auth/register.vue";
 import creatingCompany from "../components/creating/creatingCompany.vue";
+import { mainStore } from "@/stores/mainStore";
+const store = mainStore();
 </script>
 
 <template>
   <main>
-    <register />
-    <loginComponent />
+    <button @click="store.logout()">chiqish</button>
     <creating-company />
   </main>
 </template>
