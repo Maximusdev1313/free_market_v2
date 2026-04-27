@@ -40,6 +40,7 @@ export const mainStore = defineStore('mainStore', {
                 this.user = res.data.user
 
                 localStorage.setItem('token', this.token)
+                localStorage.setItem('user', JSON.stringify(this.user))
 
                 this.setAuthHeader()
                 router.push('/')

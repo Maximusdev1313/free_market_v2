@@ -17,6 +17,16 @@ export async function createCompany(req, res, next) {
 
 }
 
+export async function getCompanyByUser(req, res, next) {
+    try {
+        console.log(req.data);
+        
+        const company = await service.getCompanyByUser(req.data)
+         res.json(company); 
+    } catch (error) {
+        next(error)
+    }
+}
 export async function listCompanies(req, res, next) {
 
     try {

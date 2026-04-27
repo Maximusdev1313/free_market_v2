@@ -4,7 +4,8 @@ import auth from "../../middleware/auth.middleware.js"
 
 const router = express.Router()
 
-router.get("/", controller.listCompanies)
+router.get("/list", controller.listCompanies)
+router.post("/companybyid", controller.getCompanyByUser)
 
 router.post("/", auth, controller.createCompany)
 

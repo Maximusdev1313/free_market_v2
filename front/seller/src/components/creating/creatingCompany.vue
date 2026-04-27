@@ -1,11 +1,18 @@
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import axios from "axios";
 import { mainStore } from "@/stores/mainStore";
+import { adminStore } from "@/stores/adminStore";
+
 const store = mainStore();
+const adminStores = adminStore();
+
 const company_name = ref("");
 const address = ref("");
 
+onBeforeMount(() => {
+  adminStores.getCompany();
+});
 const creatingCompany = async () => {
   const data = {
     name: company_name.value,
@@ -43,6 +50,7 @@ const creatingCompany = async () => {
       <input type="text" name="address" id="address" v-model="address" /> <br />
       <button type="button" @click="creatingCompany()">Create</button>
     </div>
+    {{}}
   </div>
 </template>
 
