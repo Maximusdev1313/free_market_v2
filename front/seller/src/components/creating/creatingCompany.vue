@@ -26,6 +26,7 @@ const creatingCompany = async () => {
       },
     });
     console.log(response.data);
+    location.reload();
     console.log(data, "i");
   } catch (err) {
     console.log(err);

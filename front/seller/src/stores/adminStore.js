@@ -14,15 +14,15 @@ export const adminStore = defineStore('adminStore', {
     }),
 
     actions: {
-        async getCompany(userId) {
+        async getCompany() {
             
             try {
                 const user = JSON.parse(this.user)
-                console.log(user.id, 'user');
+                console.log(user.id, 'user', this.user);
                 const res = await axios.post(this.api + '/companies/companybyid', user)
 
-                this.company = res.data
-                console.log(this.company);
+                this.company = res.data[0]
+                console.log(this.company.id, 'cpm id');
                 
             }
             catch(error){

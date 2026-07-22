@@ -44,6 +44,7 @@ export const mainStore = defineStore('mainStore', {
 
                 this.setAuthHeader()
                 router.push('/')
+                
                 console.log(res.data);
                 
             } catch (error) {
@@ -56,6 +57,7 @@ export const mainStore = defineStore('mainStore', {
             this.token = null
             this.user = null
             localStorage.removeItem('token')
+            localStorage.removeItem('user')
             delete axios.defaults.headers.common['Authorization']
             location.reload()
         },

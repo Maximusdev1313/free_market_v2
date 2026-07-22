@@ -31,7 +31,7 @@ app.disable('x-powered-by')
  *   /api/users
  *   /api/orders
  */
-app.use(cors({ origin: ['http://localhost:5173'] }))
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'] }))
 app.use("/uploads", express.static("uploads"))
 app.use('/users', userRoutes)
 app.use('/api', routes)

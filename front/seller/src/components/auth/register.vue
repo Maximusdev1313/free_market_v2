@@ -7,16 +7,22 @@ const store = mainStore();
 const name = ref("");
 const password = ref("");
 const email = ref("");
+const confPassword = ref("");
 
 const handleRegister = async () => {
-  const data = {
-    name: name.value,
-    email: email.value,
-    password: password.value,
-    role: "VENDOR",
-  };
+  if (password.value === confPassword.value) {
+    const data = {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      role: "VENDOR",
+    };
 
-  await store.register(data);
+    await store.register(data);
+  } else {
+    store.setNotification("Parol bir xil emas!", "error");
+    confPassword.value = "";
+  }
 };
 </script>
 
@@ -37,6 +43,13 @@ const handleRegister = async () => {
         <label for="password">Parol</label>
         <input type="password" id="password" v-model="password" required />
 
+        <label for="password">Parolni takrorlang</label>
+        <input
+          type="password"
+          id="confpassword"
+          v-model="confPassword"
+          required
+        />
         <label for="email">Email</label>
         <input type="email" id="email" v-model="email" required />
         <div class="subtitle">

@@ -15,7 +15,9 @@ export async function createCompany(data, ownerId) {
 }
 
 export async function getCompanyByUser(data) {
-    return prisma.company.findUnique({
+    console.log(data.id, 'id');
+    
+    return prisma.company.findMany({
         where: {ownerId: data.id}
     })
     

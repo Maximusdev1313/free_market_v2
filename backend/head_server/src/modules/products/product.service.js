@@ -20,7 +20,17 @@ export async function createProduct(data) {
     })
 
 }
+export async function getCompanyByOwner(ownerId) {
+    return prisma.company.findFirst({
+        where: { ownerId }
+    });
+}
 
+export async function getProductByCompany(companyId) {
+    return prisma.product.findMany({
+        where: { companyId }
+    });
+}
 export async function deleteImage(id) {
 
     const image = await prisma.productImage.findUnique({

@@ -65,3 +65,19 @@ export async function getProducts(req, res, next) {
     }
 
 }
+export async function getProductsByCompany(req, res, next) {
+    try {
+        const ownerId = req.user.id; // 28, from auth middleware/token
+
+        const company = await service.getCompanyByOwner(ownerId);
+
+        if (!company) {
+            return res.status(404).json({ message: "Company not found for this user" });
+        }
+
+        const products = await service.getProductByCompany(company.id);
+        res.json(products);
+    } catch (err) {
+        next(err);
+    }
+}
