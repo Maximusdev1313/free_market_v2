@@ -6,10 +6,15 @@ export async function createProduct(data) {
     return prisma.product.create({
         data: {
             name: data.name,
-            price: Number(data.price),
-            stock: Number(data.stock),
-            companyId: Number(data.companyId),
+            bar_code: String(data.bar_code),
+            description: data.description,
+            price: parseFloat(data.price),
+            sale_price: parseFloat(data.sale_price),
+            discounted_price: parseFloat(data.discounted_price),
+            stock: parseInt(data.stock, 10),
+            stock_balance: parseInt(data.stock_balance, 10),
 
+            companyId: Number(data.companyId),
             images: {
                 create: data.images
             }
@@ -26,9 +31,33 @@ export async function getCompanyByOwner(ownerId) {
     });
 }
 
+export async function listProducts(query) {
+
+    const page = Number(query.page) || 1
+    const limit = Number(query.limit) || 20
+    const skip = (page - 1) * limit
+
+    const products = await prisma.product.findMany({
+        skip,
+        take: limit,
+        include: {
+            company: true,
+            category: true,
+            images: true
+        }
+    })
+
+    return products
+}
+
 export async function getProductByCompany(companyId) {
     return prisma.product.findMany({
-        where: { companyId }
+        where: { companyId },
+         include: {
+            company: true,
+            category: true,
+            images: true
+        }
     });
 }
 export async function deleteImage(id) {
@@ -73,23 +102,4 @@ export async function replaceImages(productId, files) {
         data: images
     })
 
-}
-
-export async function listProducts(query) {
-
-    const page = Number(query.page) || 1
-    const limit = Number(query.limit) || 20
-    const skip = (page - 1) * limit
-
-    const products = await prisma.product.findMany({
-        skip,
-        take: limit,
-        include: {
-            company: true,
-            category: true,
-            images: true
-        }
-    })
-
-    return products
 }

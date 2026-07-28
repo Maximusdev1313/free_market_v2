@@ -9,7 +9,8 @@ export const mainStore = defineStore('mainStore', {
         user: null,
         isLogin: true,
         notifications: [],
-        notificationTimeouts: {}
+        notificationTimeouts: {},
+        removedBgImage: null
     }),
 
     actions: {

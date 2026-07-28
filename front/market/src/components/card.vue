@@ -16,7 +16,7 @@ const props = defineProps({
     <div class="card">
       <div class="product-image">
         <div class="discount-persent">15%</div>
-        <img :src="baseImageURL + product.images[0].url" alt="product" />
+        <img :src="baseImageURL + product.images[0]?.url" alt="product" />
       </div>
 
       <div class="product-info">
@@ -27,8 +27,8 @@ const props = defineProps({
         <p class="product-description">
           {{ product.description }}
         </p>
-        <p class="product-price">${{ product.price.toFixed(2) }}</p>
-        <p class="product-discount-price">${{ product.price.toFixed(2) }}</p>
+        <p class="product-price">${{ product.sale_price.toFixed(2) }}</p>
+        <p class="product-discount-price">${{ product.discounted_price.toFixed(2) }}</p>
       </div>
       <button type="button" @click="store.addToCart(product)">
         <i class="fa-solid fa-cart-arrow-down"></i>
