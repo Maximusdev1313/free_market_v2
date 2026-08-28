@@ -81,3 +81,20 @@ export async function getProductsByCompany(req, res, next) {
         next(err);
     }
 }
+
+export async function getProductsByBarCode(req, res, next) {
+    try {
+    const companyId = req.data; // from auth middleware
+    const { bar_code } = req.params; // <-- from URL segment now
+
+    const product = await service.getProductByBarCode(bar_code, companyId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json(product);
+  } catch (err) {
+    next(err);
+  }
+}

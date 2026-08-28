@@ -60,6 +60,14 @@ export async function getProductByCompany(companyId) {
         }
     });
 }
+
+// service
+export async function getProductByBarCode(bar_code, companyId) {
+  return prisma.product.findFirst({
+    where: { bar_code, companyId },
+    include: { company: true, category: true, images: true }
+  });
+}
 export async function deleteImage(id) {
 
     const image = await prisma.productImage.findUnique({
@@ -103,3 +111,4 @@ export async function replaceImages(productId, files) {
     })
 
 }
+

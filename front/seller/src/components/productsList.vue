@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import { mainStore } from "@/stores/mainStore";
 import { adminStore } from "@/stores/adminStore";
-
+import searchProduct from "../components/creating/searchProduct.vue";
 import axios from "axios";
 const store = mainStore();
 const SellerStore = adminStore();
@@ -42,6 +42,7 @@ onMounted(() => {
 
           <th>Sotildi</th>
           <th>Omborda qolgan</th>
+          <th><search-product /></th>
         </tr>
       </thead>
       <tbody>

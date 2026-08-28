@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get("/", controller.getProducts)
 router.get("/my-company", auth, controller.getProductsByCompany);
+router.get("/:bar_code", controller.getProductsByBarCode);
 
 router.post("/", auth, upload.array("images", 5), controller.createProduct)
 
