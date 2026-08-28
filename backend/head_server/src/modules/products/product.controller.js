@@ -88,6 +88,7 @@ export async function getProductsByBarCode(req, res, next) {
     const { bar_code } = req.params; // <-- from URL segment now
 
     const product = await service.getProductByBarCode(bar_code, companyId);
+    
 
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
